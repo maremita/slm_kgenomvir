@@ -1,0 +1,6 @@
+scipy
+numpy
+biopython
+joblib
+scikit-learn>=0.21.1
+matplotlib

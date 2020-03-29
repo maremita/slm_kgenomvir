@@ -5,7 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import LinearSVC, SVC
 
-__author__ "amine"
+__author__ = "amine"
 
 priors="uniform"
 

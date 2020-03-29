@@ -78,22 +78,24 @@ class KmersCollection(ABC):
 
     def _convert_to_sparse_matrix(self):
         if self.sparse == "csr":
-            self.data = csr_matrix(self.data, dtype=np.float64)
+            self.data = csr_matrix(self.data, dtype=self.dtype)
 
         elif self.sparse == "csc":
-            self.data = csc_matrix(self.data, dtype=np.float64)
+            self.data = csc_matrix(self.data, dtype=self.dtype)
 
 
 class FullKmersCollection(KmersCollection):
 
-    def __init__(self, sequences, k=5, sparse="csr", alphabet="ACGT"):
+    def __init__(self, sequences, k=5, sparse=None,
+            dtype=np.uint64, alphabet="ACGT"):
         self.k = k
         self.sparse = sparse
+        self.dtype = dtype
         self.alphabet = alphabet
         #
         self.ids = []
         self.v_size = np.power(len(self.alphabet), self.k)
-        self.data = np.zeros((len(sequences), self.v_size)).astype(np.float64)
+        self.data = np.zeros((len(sequences), self.v_size)).astype(self.dtype)
         self.kmers_list = ["".join(t) for t in product(alphabet, repeat=k)]
         #
         self._compute_kmers(sequences)
@@ -114,9 +116,11 @@ class FullKmersCollection(KmersCollection):
 
 class SeenKmersCollection(KmersCollection):
 
-    def __init__(self, sequences, k=5, sparse="csr", alphabet="ACGT"):
+    def __init__(self, sequences, k=5, sparse=None,
+            dtype=np.uint64, alphabet="ACGT"):
         self.k = k
         self.sparse = sparse
+        self.dtype = dtype
         self.alphabet = alphabet
         #
         self.ids = []
@@ -146,23 +150,26 @@ class SeenKmersCollection(KmersCollection):
         self.v_size = len(self.kmers_list)
 
         # Convert to numpy
-        self.data = np.array([ self.dict_data[x] for x in self.dict_data ], dtype=np.float64).T
+        self.data = np.array([ self.dict_data[x] for x in self.dict_data ], dtype=self.dtype).T
 
         return self
 
 
 class GivenKmersCollection(KmersCollection):
 
-    def __init__(self, sequences, kmers_list, sparse="csr", alphabet="ACGT"):
+    def __init__(self, sequences, kmers_list, sparse=None,
+            dtype=np.uint64, alphabet="ACGT"):
         self.sparse = sparse
+        self.dtype = dtype
         self.alphabet = alphabet
         self.kmers_list = kmers_list
+        #
         self.k = len(self.kmers_list[0])
         self.__construct_kmer_indices()
         #
         self.ids = []
         self.v_size = len(self.kmers_list)
-        self.data = np.zeros((len(sequences), self.v_size)).astype(np.float64)
+        self.data = np.zeros((len(sequences), self.v_size)).astype(self.dtype)
         #
         self._compute_kmers(sequences)
         self._convert_to_sparse_matrix()

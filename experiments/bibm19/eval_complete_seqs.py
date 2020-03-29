@@ -108,7 +108,7 @@ def k_evaluation(seq_file, cls_file, classifiers, k_main_list, full_kmers,
     seq_cv = seq_collections.SeqCollection((seq_file, cls_file))
 
     print("Counts of sequences")
-    pprint(seq_cv.get_count_targets())
+    pprint(seq_cv.get_count_labels())
 
     for k_main in k_main_list:
     
@@ -118,7 +118,7 @@ def k_evaluation(seq_file, cls_file, classifiers, k_main_list, full_kmers,
         seq_cv_kmers = kmers.build_kmers(seq_cv, k_main,
                 full_kmers=full_kmers, sparse=None)
         seq_cv_X = seq_cv_kmers.data
-        seq_cv_y = np.asarray(seq_cv.targets)
+        seq_cv_y = np.asarray(seq_cv.labels)
 
         seq_cv_back_kmers = kmers.build_kmers(seq_cv, k_main-1,
                 full_kmers=full_kmers, sparse=None)

@@ -3,10 +3,9 @@
 from lm_genomvir.bio import seq_collections
 from lm_genomvir.bio import kmer_collections as kmers
 from lm_genomvir.utils import ndarrays_tolists
-
 from lm_genomvir.bibm19 import clfs_to_evaluate
 
-import warnings
+#import warnings
 #warnings.filterwarnings('ignore')
 
 import sys
@@ -16,7 +15,6 @@ from pprint import pprint
 from collections import defaultdict
 
 import numpy as np
-
 from joblib import Parallel, delayed
 
 from sklearn.model_selection import cross_validate

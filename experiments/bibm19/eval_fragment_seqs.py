@@ -137,7 +137,7 @@ def clf_evaluation_with_fragments(classifiers, data_seqs, fragments,
     X = X_kmer.data
     #print("X shape {}".format(X.shape))
     X_kmers_list = X_kmer.kmers_list
-    y = np.asarray(data_seqs.targets)
+    y = np.asarray(data_seqs.labels)
 
     # X_back
     X_kmer_back = kmers.build_kmers(data_seqs, k-1,
@@ -152,7 +152,7 @@ def clf_evaluation_with_fragments(classifiers, data_seqs, fragments,
     #print("X_frgmts shape {}".format(X_frgmts.shape))
     X_frgmts_back = kmers.GivenKmersCollection(fragments, X_back_list,
             sparse=None).data    
-    y_frgmts = np.asarray(fragments.targets)
+    y_frgmts = np.asarray(fragments.labels)
     #print("X_frgmts_back shape {}".format(X_frgmts_back.shape))
     #print("y_frgmts shape {}".format(y_frgmts.shape))
 
@@ -209,17 +209,17 @@ def k_evaluation_with_fragments(seq_file, cls_file, classifiers,
     seq_cv = seq_collections.SeqCollection((seq_file, cls_file))
 
     print("Counts of complete genomes")
-    pprint(seq_cv.get_count_targets())
+    pprint(seq_cv.get_count_labels())
 
     ## construct fragments dataset
-    frgmts_cv = seq_cv.extract_fragments(frgmt_size, step=int(frgmt_size/2))
+    frgmts_cv = seq_cv.extract_fragments(frgmt_size, stride=int(frgmt_size/2))
 
     if frgmt_count > 1:
         # TODO:  with value of 1, I got an error in line 175
         frgmts_cv = frgmts_cv.stratified_sample(frgmt_count)
 
     print("Counts of fragments")
-    pprint(frgmts_cv.get_count_targets())
+    pprint(frgmts_cv.get_count_labels())
 
     frgmts_parents = frgmts_cv.get_parents_rank_list()
 

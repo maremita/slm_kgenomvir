@@ -3,7 +3,7 @@
 # author: amine
 # An example bash script to run eval_complete_seqs.py
 
-CLF=bayes
+CLF=markov
 VIRUS=HCV02
 CGFRGT=CC
 NBITER=4

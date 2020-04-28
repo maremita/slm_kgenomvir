@@ -194,7 +194,7 @@ class GivenKmersCollection(KmersCollection):
 # Data build functions
 # ####################
 
-def build_kmers(seq_data, k, full_kmers=False, sparse="csr"):
+def build_kmers(seq_data, k, full_kmers=False, sparse=None):
 
     if full_kmers:
         return FullKmersCollection(
@@ -205,7 +205,7 @@ def build_kmers(seq_data, k, full_kmers=False, sparse="csr"):
                 seq_data, k=k, sparse=sparse)
 
 
-def build_kmers_Xy_data(seq_data, k, full_kmers=False, sparse="csr"):
+def build_kmers_Xy_data(seq_data, k, full_kmers=False, sparse=None):
  
     X_data = build_kmers(seq_data, k, full_kmers, sparse).data
     y_data = np.asarray(seq_data.labels)

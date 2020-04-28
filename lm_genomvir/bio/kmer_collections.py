@@ -194,20 +194,22 @@ class GivenKmersCollection(KmersCollection):
 # Data build functions
 # ####################
 
-def build_kmers(seq_data, k, full_kmers=False, sparse=None):
+def build_kmers(seq_data, k, full_kmers=False, sparse=None,
+        dtype=np.uint64):
 
     if full_kmers:
         return FullKmersCollection(
-                seq_data, k=k, sparse=sparse)
+                seq_data, k=k, sparse=sparse, dtype=dtype)
 
     else:
         return SeenKmersCollection(
-                seq_data, k=k, sparse=sparse)
+                seq_data, k=k, sparse=sparse, dtype=dtype)
 
 
-def build_kmers_Xy_data(seq_data, k, full_kmers=False, sparse=None):
- 
-    X_data = build_kmers(seq_data, k, full_kmers, sparse).data
+def build_kmers_Xy_data(seq_data, k, full_kmers=False, sparse=None,
+        dtype=np.uint64):
+
+    X_data = build_kmers(seq_data, k, full_kmers, sparse, dtype).data
     y_data = np.asarray(seq_data.labels)
 
     return X_data, y_data

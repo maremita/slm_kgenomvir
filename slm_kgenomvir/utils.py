@@ -1,4 +1,4 @@
-import lm_genomvir
+import slm_kgenomvir
 
 import json
 import platform
@@ -58,7 +58,7 @@ def get_ext_versions():
     versions = dict() 
 
     versions["python"] = platform.python_version()
-    versions["lm_genomvir"] = lm_genomvir.__version__ 
+    versions["slm_kgenomvir"] = slm_kgenomvir.__version__ 
     versions["numpy"] = np.__version__ 
     versions["scipy"] = scipy.__version__ 
     versions["sklearn"] = sklearn.__version__ 

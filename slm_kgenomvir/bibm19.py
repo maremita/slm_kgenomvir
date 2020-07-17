@@ -1,5 +1,5 @@
-from lm_genomvir.models import bayes
-from lm_genomvir.models import markov
+from slm_kgenomvir.models import bayes
+from slm_kgenomvir.models import markov
 
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB

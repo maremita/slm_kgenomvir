@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-from lm_genomvir.bio import seq_collections
-from lm_genomvir.bio import kmer_collections as kmers
-from lm_genomvir.utils import ndarrays_tolists
-from lm_genomvir.bibm19 import clfs_to_evaluate
+from slm_kgenomvir.bio import seq_collections
+from slm_kgenomvir.bio import kmer_collections as kmers
+from slm_kgenomvir.utils import ndarrays_tolists
+from slm_kgenomvir.bibm19 import clfs_to_evaluate
 
 #import warnings
 #warnings.filterwarnings('ignore')

@@ -1,5 +1,5 @@
 from setuptools import setup, find_packages
-from lm_genomvir import __version__
+from slm_kgenomvir import __version__
 
 _version = __version__
 
@@ -10,9 +10,10 @@ with open("requirements.txt", "r") as fh:
         INSTALL_REQUIRES.append(line.rstrip())
 
 setup(
-    name='lm_genomvir',
+    name='slm_kgenomvir',
     version=_version,
-    description='evaluation of statistical Linear Models for GENOMe VIRus classification',
+    description='Evaluation of statistical linear models'+\
+            ' for kmer-based genome virus classification',
     author='remita',
     author_email='amine.m.remita@gmail.com',
     packages=find_packages(),

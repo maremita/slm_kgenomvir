@@ -15,7 +15,7 @@ setup(
     description='Evaluation of statistical linear models'+\
             ' for kmer-based genome virus classification',
     author='remita',
-    author_email='amine.m.remita@gmail.com',
+    author_email='remita.amine@courrier.uqam.ca',
     packages=find_packages(),
     install_requires=INSTALL_REQUIRES
 )
